@@ -1,0 +1,41 @@
+# ISIC 2019 — 8-class skin lesion classification (UNK rows removed).
+#
+#   python train.py configs/isic2019.yaml
+#   python train.py configs/isic2019.yaml model.head=baam loss.name=dwce
+
+dataset:
+  name: isic2019
+  root: path/to/ISIC2019
+  num_classes: 8
+  image_size: 224
+  protocol: holdout       # holdout only — no cv results published for this dataset
+  val_fraction: 0.2
+  split_seed: null  
+
+model:
+  backbone: resnet18
+  head: baam            # linear (baseline) | baam
+  embedding_dim: 128
+  dropout: 0.4
+  # BAAM head only. s is fixed per dataset; margins are set per batch.
+  s: 4.0
+  m_min: 0.0
+  m_max: 0.2
+
+loss:
+  name: dwce                # ce | dwce
+
+train:
+  epochs: 30
+  batch_size: 128
+  eval_batch_size: 32
+  freeze_epochs: 5
+  lr: 0.001
+  momentum: 0.9
+  weight_decay: 0.0001
+
+runtime:
+  seed: null
+  device: cuda:0
+  num_workers: 4
+  out_dir: runs

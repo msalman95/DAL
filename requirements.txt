@@ -1,0 +1,14 @@
+# Versions used for the published results.
+# torch and torchvision were installed from the PyTorch CUDA 12.4 index:
+#   pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu124
+# Use the build matching your own CUDA version.
+
+torch==2.5.1
+torchvision==0.20.1
+
+numpy>=1.24
+pandas>=2.0
+pillow>=10.0
+PyYAML>=6.0
+scikit-learn>=1.3
+tqdm>=4.65

@@ -1,0 +1,43 @@
+dataset:
+  name: aptos
+  root: /path/to/APTOS
+  num_classes: 5
+  image_size: 224
+  protocol: holdout       # holdout | cv
+  csv_name: train.csv     # the Kaggle competition file
+  image_dir: images
+  image_ext: .png
+  test_fraction: 0.2      # holdout only — APTOS ships no labelled test set
+  val_fraction: 0.2       # of the trainval part, giving 64/16/20 overall
+  split_seed: null
+  n_folds: 5              # cv only
+  fold: 0                 # cv only, 0-based
+  fold_seed: 42           # cv only
+
+model:
+  backbone: resnet18
+  head: baam            # linear (baseline) | baam
+  embedding_dim: 128
+  dropout: 0.4
+  # BAAM head only. s is fixed per dataset; margins are set per batch.
+  s: 4.0
+  m_min: 0.0
+  m_max: 0.2
+
+loss:
+  name: dwce                # ce | dwce
+
+train:
+  epochs: 30
+  batch_size: 128
+  eval_batch_size: 32
+  freeze_epochs: 5
+  lr: 0.001
+  momentum: 0.9
+  weight_decay: 0.0001
+
+runtime:
+  seed: null
+  device: cuda:0
+  num_workers: 4
+  out_dir: runs
