@@ -8,13 +8,13 @@ dataset:
   root: path/to/ISIC2019
   num_classes: 8
   image_size: 224
-  protocol: holdout       # holdout only — no cv results published for this dataset
+  protocol: holdout       # holdout only
   val_fraction: 0.2
   split_seed: null  
 
 model:
   backbone: resnet18
-  head: baam            # linear (baseline) | baam
+  head: linear            # linear (baseline) | baam
   embedding_dim: 128
   dropout: 0.4
   # BAAM head only. s is fixed per dataset; margins are set per batch.
