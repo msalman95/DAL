@@ -12,7 +12,7 @@ dataset:
 
 model:
   backbone: resnet18
-  head: baam            # linear (baseline) | baam
+  head: linear            # linear (baseline) | baam
   embedding_dim: 128
   dropout: 0.4
   # BAAM head only. s is fixed per dataset; margins are set per batch.
